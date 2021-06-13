@@ -1,0 +1,32 @@
+/getFormula
+************************************************************************
+requestBody
+--------------------------------------------
+{
+    "realFeatures" : ["current","voltage"]
+    "data": [current.data,voltage.data]
+}
+    
+responseBody
+--------------------------------------------
+{
+    formula : "(current*voltage)"
+}
+
+/setFormula
+******************************************************************************
+requestBody
+{
+    "independant":["current","resistance"],
+    "dependant":["voltage"]
+    "formula":"current*resistance"  
+}
+responseBody
+{
+    "message":"formula generated"
+}
+
+'(','current','*','voltage',')'
+
+
+
