@@ -33,6 +33,7 @@ router.post('/:id',async(req,res,next)=>
             let formula = doc.syntheticFeature[syntheticFeature[i]].formula
             var expr = new RegExp("(?<=[{(-+*/)}])|(?=[{(-+*/)}])") 
             let formulaSplitting = formula.split(expr)
+            console.log(formulaSplitting)
             /*
             for(let i =0 ;i< Object.keys(feature).length;i++)
             {
@@ -53,17 +54,27 @@ router.post('/:id',async(req,res,next)=>
             }
         }
     } */
+    // you have set of synthetic features
             for(let i = 0;i<Object.keys(syntheticFeature);i++)
             {
                 for(let j = 0; j < formulaSplitting.length;j++)
                 {
                         if(Object.keys(syntheticFeature)[i] === formulaSplitting[j])
-                        {
+                        {   
                             
+                            const variableDataLength = syntheticFeature[Object.keys(syntheticFeature).data.length - 1]
+                            formulaSplitting[j] = syntheticFeature[(Object.keys(syntheticFeature)[i])].data[variableDataLength].value 
+
+
                         }
                 }
             }
-
+            console.log('formula after replacing variable by values',formulaSplitting)
+            // converting formula splitted array toString()
+            const formulaSplittingToString = formulaSplitting.toString()
+            const formulaSplittingToStringWithoutComma = formulaSplittingToString.replace(/,/g, '')
+            const afterEval = eval(formulaSplittingToStringWithoutComma)
+            collection.updateOne({_id:id},{$set:{syntheticFeature:{}}})
             
         }
 
