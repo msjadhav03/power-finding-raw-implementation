@@ -74,7 +74,7 @@ for(let i =0 ;i< Object.keys(feature).length;i++)
             //console.log(feature[(Object.keys(feature)[i])].data[(feature[Object.keys(feature)[i]].length) - 1])
             powerArray[j] = feature[(Object.keys(feature)[i])].data[variableDataLength].value
 
-            // TO DO add console.log to above statement to check whether it will work or not
+         
         }
     }
 }
